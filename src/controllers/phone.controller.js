@@ -31,3 +31,35 @@ export async function getPhones(req, res) {
     res.status(500).json({ message: 'Error loading phone data' });
   }
 }
+
+/**
+ * Controller: getPhoneDetails
+ * Reads a single product JSON file from src/assets/phones/{productId}.json
+ * If the file does not exist, responds with 404 and a clear message.
+ * Any unexpected error results in a 500 response.
+ */
+export async function getPhoneDetails(req, res) {
+  const { productId } = req.params;
+
+  try {
+    // Build path to the requested product JSON
+    const productPath = join(__dirname, '..', 'assets', 'phones', `${productId}.json`);
+
+    // Read file contents asynchronously
+    const content = await readFile(productPath, 'utf8');
+
+    // Parse and return the product data
+    const product = JSON.parse(content);
+    return res.status(200).type('application/json').json(product);
+  } catch (err) {
+    // If file not found, respond with 404
+    if (err.code === 'ENOENT') {
+      return res.status(404).json({ message: 'Phone not found' });
+    }
+
+    // Log unexpected errors and respond with 500
+    // eslint-disable-next-line no-console
+    console.error(`Error reading product ${productId}:`, err);
+    return res.status(500).json({ message: 'Server error' });
+  }
+}

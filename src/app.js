@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import authRouter from '../src/routes/auth.routes.js';
 import phoneRouter from '../src/routes/phone.routes.js';
-import authMiddleware from './auth.middleware.js';
 
 // Load environment variables from .env (if present)
 dotenv.config();
@@ -33,8 +32,8 @@ app.use(express.static(join(__dirname, 'public')));
 app.use('/', authRouter);
 
 // Mount phone API routes under /api/phones
-// This makes the GET /api/phones endpoint available publicly
-app.use('/api/phones', authMiddleware, phoneRouter);
+// Make this public (no auth middleware) so clients can fetch list of phones
+app.use('/api/phones', phoneRouter);
 
 // Simple health check
 app.get('/health', (req, res) => {
