@@ -61,6 +61,6 @@
         "flash": "16000MB", 
         "ram": "512MB"
     },
-    "mrp": "$370",
-    "dealPrice": "$320"
+    "mrp": "370",
+    "dealPrice": "320"
 }

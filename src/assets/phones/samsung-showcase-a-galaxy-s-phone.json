@@ -47,8 +47,8 @@
         "img/phones/samsung-showcase-a-galaxy-s-phone.2.jpg"
     ], 
     "name": "Samsung Showcase\u2122 a Galaxy S\u2122 phone", 
-    "mrp": "$250",
-    "dealPrice": "$200",
+    "mrp": "250",
+    "dealPrice": "200",
     "sizeAndWeight": {
         "dimensions": [
             "64.2 mm (w)", 

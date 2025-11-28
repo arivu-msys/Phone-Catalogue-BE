@@ -46,7 +46,7 @@
         "img/phones/motorola-xoom.1.jpg", 
         "img/phones/motorola-xoom.2.jpg"
     ], 
-    "mrp": "$400",
+    "mrp": "400",
     "name": "MOTOROLA XOOM\u2122", 
     "sizeAndWeight": {
         "dimensions": [
@@ -60,5 +60,5 @@
         "flash": "32000MB", 
         "ram": "1000MB"
     },
-    "dealPrice": "$350"
+    "dealPrice": "350"
 }

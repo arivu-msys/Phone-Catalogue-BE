@@ -47,8 +47,8 @@
         "img/phones/t-mobile-g2.2.jpg"
     ], 
     "name": "T-Mobile G2", 
-    "mrp": "$230",
-    "dealPrice": "$180",
+    "mrp": "230",
+    "dealPrice": "180",
     "sizeAndWeight": {
         "dimensions": [
             "60.4 mm (w)", 
