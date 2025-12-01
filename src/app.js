@@ -39,7 +39,7 @@ app.use('/api/phones', authMiddleware, phoneRouter);
 
 // Mount placeOrder endpoint at POST /placeOrder
 // This route is protected by the same auth middleware
-app.use('/api/placeOrder', orderRouter);
+app.use('/api/placeOrder', authMiddleware, orderRouter);
 
 // Simple health check
 app.get('/health', (req, res) => {
