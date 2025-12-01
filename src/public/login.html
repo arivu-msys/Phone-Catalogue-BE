@@ -1,44 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Login - Phone Catalogue</title>
-    <style>
-      body { font-family: Arial, sans-serif; padding: 2rem; }
-      .container { max-width: 400px; margin: 0 auto; }
-      .error { color: red; margin-bottom: 1rem; }
-      label { display:block; margin-top:0.5rem; }
-      input { width:100%; padding:0.5rem; margin-top:0.25rem; }
-      button { margin-top:1rem; padding:0.6rem 1rem; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Login</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phone Catalogue Login</title>
 
-      <div id="error" class="error" style="display:none;"></div>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-      <!-- Form posts to /login (handled by server) -->
-      <form id="loginForm" method="post" action="/login">
-        <label for="username">Username</label>
-        <input id="username" name="username" required />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" required />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        <button type="submit">Sign in</button>
-      </form>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 950px;
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .left-image img {
+      width: 100%;
+      max-width: 330px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .login-box {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 8px;
+      position: relative;
+      width: 100%;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .input-group .bi {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      color: gray;
+      font-size: 18px;
+    }
+
+    /* Error styling */
+    .error {
+      color: #d93025;
+      font-size: 13px;
+      margin: -4px 0 10px 2px;
+      display: none;
+    }
+
+    input.error-input {
+      border-color: #d93025 !important;
+    }
+
+    .remember-box {
+      display: flex;
+      align-items: center;
+      margin: 10px 0 20px 0;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #4b8ef1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .create-link {
+      margin-top: 10px;
+      display: block;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .social-login {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons i {
+      font-size: 20px;
+      margin-right: 15px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+    }
+
+    .social-icons .google { color: #db4437; }
+    .social-icons .facebook { color: #4267B2; }
+    .social-icons .x { color: black; }
+
+    /* Responsive Fix */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 20px;
+      }
+
+      .left-image img {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <!-- Left Side Image -->
+    <div class="left-image">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+           alt="Phone Catalogue">
     </div>
 
-    <script>
-      // Show error message if the URL contains ?error=1
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('error')) {
-        const err = document.getElementById('error');
-        err.textContent = 'Invalid user. Please provide correct username and password.';
-        err.style.display = 'block';
+    <!-- Login Form -->
+    <div class="login-box">
+      <h2>Log In</h2>
+
+      <form id="loginForm" method="post" action="/login" novalidate>
+
+        <!-- Username -->
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Your Name" required>
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <small class="error" id="usernameError">Please enter your username</small>
+
+        <!-- Password -->
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Password" required>
+          <i class="bi bi-lock-fill"></i>
+        </div>
+        <small class="error" id="passwordError">Please enter your password</small>
+
+        <div class="remember-box">
+          <input type="checkbox" id="remember" name="remember">
+          <label for="remember">&nbsp; Remember me</label>
+        </div>
+      </br>
+        <button type="submit" class="login-btn">Log In</button>
+
+      </form>
+
+      </div>
+
+  </div>
+
+  <!-- JS Validation -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      let valid = true;
+
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      const usernameError = document.getElementById("usernameError");
+      const passwordError = document.getElementById("passwordError");
+
+      // Reset
+      usernameError.style.display = "none";
+      passwordError.style.display = "none";
+      username.classList.remove("error-input");
+      password.classList.remove("error-input");
+
+      // Username
+      if (username.value.trim() === "") {
+        usernameError.style.display = "block";
+        username.classList.add("error-input");
+        valid = false;
       }
-    </script>
-  </body>
- </html>
+
+      // Password
+      if (password.value.trim() === "") {
+        passwordError.style.display = "block";
+        password.classList.add("error-input");
+        valid = false;
+      }
+
+      // Stop submit
+      if (!valid) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
